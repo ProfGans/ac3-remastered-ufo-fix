@@ -1,0 +1,5 @@
+Bundled runtime: Python 3.13.7 (PSF), Tcl/Tk 8.6, lzokay 2.1.0 (MIT).
+Executable built with PyInstaller 6.22.3, GPL with bootloader exception; see COPYING.
+PyInstaller source: https://github.com/pyinstaller/pyinstaller/tree/v6.22.3
+lzokay source: https://github.com/encounter/lzokay-python/tree/v2.1.0
+Windows runtime libraries retain their vendor licenses.

@@ -1,0 +1,67 @@
+AC III Remastered – UFO Fix 0.1.0 (experimentelle Community-Version)
+================================================================
+
+Für Windows-PC-Spielstände von Assassin's Creed III Remastered.
+Kein offizieller Ubisoft-Patch. Keine Unterstützung für das Original von
+2012, PlayStation, Xbox oder Switch. Die Reparatur wurde an einem betroffenen
+Steam-Spielstand im Spiel erfolgreich bestätigt. Andere Accounts wurden
+mit synthetischen Verschlüsselungsschlüsseln getestet; eine allgemeine
+Kompatibilität mit jedem Spielstand ist damit nicht nachgewiesen.
+
+Was wird repariert?
+Der bekannte Fall: UFO-Auftrag angenommen, aber Suchgebiet und Regenschirm
+fehlen; der zugehörige Intro-Eintrag fehlt in der Missionshistorie.
+Das Werkzeug ergänzt ausschließlich diesen Eintrag. Die Untersuchung bleibt
+offen und muss selbst gespielt werden. Es vergibt keine 100-%-Wertung.
+Vorhandene UFO-Historien und unbekannte Zustände werden nicht bearbeitet.
+
+Anwendung
+1. ZIP vollständig entpacken und AC3-UFO-Fix.exe starten. Keine Installation
+   und kein Python erforderlich (Windows x64). Die EXE ist nicht signiert.
+2. Eine Hauptspielstand-Datei (*.save) auswählen. Nicht pauschal von der
+   Dateinummer auf den Menü-Slot schließen: Das Werkzeug zeigt den Slot an.
+   Dateien mit Einstellungen oder DLC werden abgelehnt.
+   Üblicher Speicherort:
+   Ubisoft Game Launcher\savegames\<Account-ID>\5184
+   Andere Installationen können einen abweichenden Ordner verwenden.
+3. Falls der bekannte Zustand erkannt wird, Zielordner wählen und eine
+   Sicherung sowie eine reparierte Kopie erstellen lassen.
+4. Spiel und Ubisoft Connect schließen. Cloud-Synchronisation für den
+   Austausch vorübergehend deaktivieren. Den gesamten bisherigen Save-Ordner
+   zusätzlich sichern. Nur die gewählte .save-Datei durch die gleichnamige
+   Datei aus dem neuen Unterordner "Repariert" ersetzen.
+5. Spiel starten, richtigen Slot laden, UFO-Mission abschließen und die
+   automatische Speicherung abwarten. Nach erneutem Laden Erfolg prüfen.
+6. Cloud-Synchronisation wieder aktivieren. Bei einem Konflikt den lokalen,
+   reparierten Spielstand verwenden.
+
+Rückweg
+Bei Problemen Spiel und Launcher schließen und die Datei aus "Original"
+zurückkopieren. Keine anderen Slots löschen oder ersetzen.
+Das Werkzeug selbst überschreibt niemals den ausgewählten Spielstand.
+Es erstellt einen eigenen Ergebnisordner mit Original, Repariert und einem
+JSON-Bericht mit Prüfsummen. Es nutzt kein Netzwerk und lädt keine Daten hoch.
+
+Grenzen und Technik
+Unterstützte Save-Version: 33; PC-Hauptspielslots 1–3.
+Prüfung von äußerer CRC32C, komprimierten Blöcken und dynamischer TLV-Struktur.
+Die Schlüsselableitung erfolgt lokal aus dem jeweiligen Save; keine fremde
+Account-ID und kein fremder Spielstand werden eingebettet.
+Änderung: Frontiersmen-Gruppe 0x1463028a2, Mission 0x2953f22b0,
+erfolgreicher Intro-Schritt 0x2953f22bb, ohne Body/Abschlusswertung.
+Komprimierung, Blockgrößen, Elternlängen und Prüfsummen werden neu berechnet.
+Das Werkzeug ist absichtlich eng begrenzt und behebt keine anderen Savefehler.
+
+Quellcode
+Enthalten unter source/. Python 3.10+; Abhängigkeit lzokay==2.1.0.
+  python -m pip install -r source/requirements.txt
+  python source/app.py
+CLI (funktioniert auch mit der EXE; --json-out schreibt das Ergebnis):
+  python source/app.py --check "2.save" --json-out "pruefung.json"
+  python source/app.py --repair "2.save" --output "Ergebnisse"
+Die JSON-Zieldatei darf noch nicht existieren.
+
+Weitergabe
+Dieses ZIP darf mit Anleitung, Quellcode und Lizenzhinweisen weitergegeben
+werden. Keine eigenen Save-Dateien oder Account-Ordner hinzufügen.
+Kein Ubisoft-Spielcode und keine Spielstände sind Teil dieses Pakets.
